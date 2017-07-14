@@ -36,6 +36,10 @@ public final class InnValidator {
 		public boolean isValid() {
 			return valid;
 		}
+
+		public boolean nonValid() {
+			return !isValid();
+		}
 	}
 
 	@Nonnull
