@@ -51,18 +51,12 @@
 	</properties>
 
 	<dependencies>
+		<!--Validation API-->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
 			<version>1.1.0.Final</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<!--Improved Java libs-->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.5</version>
 		</dependency>
 
 		<!--Useful annotations-->
