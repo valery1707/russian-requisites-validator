@@ -24,7 +24,7 @@ nano setting.xml
 ### Sign
 
 ```bash
-rultor-remote.sh -p russian-requisites-validator pubring.gpg secring.gpg settings.xml github-deploy.key github-deploy.key.pub
+rultor-remote.sh -p valery1707/russian-requisites-validator pubring.gpg secring.gpg settings.xml github-deploy.key github-deploy.key.pub
 ```
 
 ### Clean
