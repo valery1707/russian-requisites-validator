@@ -6,7 +6,7 @@
 
 	<groupId>name.valery1707.validator</groupId>
 	<artifactId>russian-requisites-validator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>Russian requisites validators</name>
