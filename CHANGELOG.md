@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+# 0.0.2
+
 * Implement KPP processing
 
 # 0.0.1
