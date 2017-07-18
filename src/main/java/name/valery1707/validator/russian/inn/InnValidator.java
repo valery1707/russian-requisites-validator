@@ -20,6 +20,8 @@ public final class InnValidator {
 			"[\\d]{10,12}" +
 			"$";
 	public static final Pattern PATTERN = Pattern.compile(REGEXP);
+	public static final int LEN_JURIDICAL = 10;
+	public static final int LEN_PHYSICAL = 12;
 
 	public enum ValidationResult {
 		NULL(false),
@@ -47,14 +49,14 @@ public final class InnValidator {
 	public static ValidationResult isValid(@Nullable CharSequence inn) {
 		if (inn == null) {
 			return NULL;
-		} else if (inn.length() != 10 && inn.length() != 12) {
+		} else if (inn.length() != LEN_JURIDICAL && inn.length() != LEN_PHYSICAL) {
 			return LENGTH;
 		} else if (!StringUtils.isNumeric(inn)) {
 			return FORMAT;
-		} else if (inn.length() == 10) {
+		} else if (inn.length() == LEN_JURIDICAL) {
 			boolean crc_10 = isValidCrc(inn);
 			return crc_10 ? OK : CRC;
-		} else {//inn.length() == 12
+		} else {//inn.length() == LEN_PHYSICAL
 			boolean crc_11 = isValidCrc(inn.subSequence(0, inn.length() - 1));
 			boolean crc_12 = isValidCrc(inn);
 			return (crc_11 && crc_12) ? OK : CRC;
