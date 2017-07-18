@@ -16,7 +16,7 @@ public class InnInfo {
 	private final byte localTax;
 
 	/**
-	 * Номер налоговой записи налогоплательщика/
+	 * Номер налоговой записи налогоплательщика
 	 */
 	private final int id;
 
@@ -52,6 +52,7 @@ public class InnInfo {
 		if (InnValidator.isValid(value).nonValid()) {
 			throw new IllegalArgumentException("Can not parse INN from string: " + value);
 		}
+		assert value != null;
 		boolean juridical = value.length() == 10;
 		byte subject = Byte.valueOf(value.substring(0, 2));
 		byte localTax = Byte.valueOf(value.substring(2, 4));

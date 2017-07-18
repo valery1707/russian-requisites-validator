@@ -44,7 +44,7 @@ public class KppValidator {
 	}
 
 	@Nonnull
-	public static ValidationResult isValid(@Nullable String src) {
+	public static ValidationResult isValid(@Nullable CharSequence src) {
 		if (src == null) {
 			return NULL;
 		} else if (src.length() != LENGTH) {
