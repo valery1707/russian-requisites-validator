@@ -11,3 +11,5 @@ install: |-
 deploy:
   script: |
     bash .rultor/deploy.sh
+merge:
+  script: mvn clean install
