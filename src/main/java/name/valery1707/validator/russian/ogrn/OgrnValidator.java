@@ -22,7 +22,16 @@ public class OgrnValidator {
 	@RegEx
 	public static final String REGEXP =
 			"^" +
-			"\\d{13,15}" +
+			"[1-9]" +//признак отнесения государственного регистрационного номера записи
+			"\\d{2}" +//две последние цифры года внесения записи в государственный реестр
+			"\\d{2}" +//порядковый номер субъекта Российской Федерации по перечню субъектов Российской Федерации, установленному статьей 65 Конституции Российской Федерации
+			"(" +
+			"\\d{2}" +//код налоговой инспекции. Присутствует в ОГРН, отсуствует в ОГРНИП
+			"\\d{5}" +//номер записи, внесенной в государственный реестр в течение года
+			"|" +
+			"\\d{9}" +//номер записи, внесенной в государственный реестр в течение года
+			")" +
+			"\\d" +//Контрольное число
 			"$";
 	public static final Pattern PATTERN = Pattern.compile(REGEXP);
 	public static final int LEN_JURIDICAL = 13;
@@ -68,8 +77,13 @@ public class OgrnValidator {
 	 */
 	private static boolean isValidCrc(@Nonnull CharSequence s) {
 		int len = s.length();
-		Long longValue = Long.valueOf(s.subSequence(0, len - 1).toString());
-		int crc = (int) (longValue % (len - 2) % 10);
-		return s.charAt(len - 1) == Character.forDigit(crc, 10);
+		return s.charAt(len - 1) == calcCrc(s.subSequence(0, len - 1));
+	}
+
+	public static char calcCrc(CharSequence value) {
+		int len = value.length();
+		Long longValue = Long.valueOf(value.toString());
+		int crc = (int) (longValue % (len - 1) % 10);
+		return Character.forDigit(crc, 10);
 	}
 }
