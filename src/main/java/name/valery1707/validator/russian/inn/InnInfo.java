@@ -3,6 +3,8 @@ package name.valery1707.validator.russian.inn;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static name.valery1707.validator.Checker.checkRange;
+
 @SuppressWarnings("WeakerAccess")
 public class InnInfo {
 	/**
@@ -32,18 +34,9 @@ public class InnInfo {
 	}
 
 	public InnInfo(byte subject, byte localTax, int id, boolean juridical) {
-		if (subject < 0 || subject > 99) {
-			throw new IllegalArgumentException("Subject must be between 1 and 99");
-		}
-		if (localTax < 0 || localTax > 99) {
-			throw new IllegalArgumentException("Local tax must be between 1 and 99");
-		}
-		if (id < 0 || ((juridical && id > 99999) || id > 999999)) {
-			throw new IllegalArgumentException("Local tax must be between 1 and 99");
-		}
-		this.subject = subject;
-		this.localTax = localTax;
-		this.id = id;
+		this.subject = checkRange(subject, 0, 99, "Subject");
+		this.localTax = checkRange(localTax, 0, 99, "Local tax");
+		this.id = checkRange(id, 0, juridical ? 99999 : 999999, "ID");
 		this.juridical = juridical;
 	}
 

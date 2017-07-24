@@ -3,6 +3,8 @@ package name.valery1707.validator.russian.ogrn;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static name.valery1707.validator.Checker.checkRange;
+
 /**
  * ОГРН - Основной Государственный Регистрационный Номер
  * <p/>
@@ -53,11 +55,11 @@ public class OgrnInfo {
 	 * @param juridical ОГРН/ОГРНИП
 	 */
 	private OgrnInfo(byte type, byte year, byte subject, byte tax, int id, boolean juridical) {
-		this.type = type;
-		this.year = year;
-		this.subject = subject;
-		this.tax = tax;
-		this.id = id;
+		this.type = checkRange(type, 0, 9, "Type");
+		this.year = checkRange(year, 0, 99, "Year");
+		this.subject = checkRange(subject, 0, 99, "Subject");
+		this.tax = juridical ? checkRange(tax, 0, 99, "Tax") : tax;
+		this.id = checkRange(id, 1, juridical ? 99999 : 999999999, "ID");
 		this.juridical = juridical;
 	}
 
