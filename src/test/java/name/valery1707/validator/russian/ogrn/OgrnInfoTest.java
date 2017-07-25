@@ -1,6 +1,5 @@
 package name.valery1707.validator.russian.ogrn;
 
-import name.valery1707.validator.russian.inn.InnInfo;
 import org.junit.Test;
 
 import static name.valery1707.validator.russian.ogrn.OgrnInfo.parse;
@@ -10,22 +9,22 @@ public class OgrnInfoTest {
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testParseInvalid_null() throws Exception {
-		InnInfo.parse(null);
+		parse(null);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testParseInvalid_length() throws Exception {
-		InnInfo.parse("123");
+		parse("123");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testParseInvalid_format() throws Exception {
-		InnInfo.parse("qwerty1234567");
+		parse("qwerty1234567");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testParseInvalid_crc() throws Exception {
-		InnInfo.parse("1234567890123");
+		parse("1234567890123");
 	}
 
 	@Test
@@ -37,6 +36,8 @@ public class OgrnInfoTest {
 		assertThat(info.getSubject()).isEqualTo((byte) 77);
 		assertThat(info.getTax()).isEqualTo((byte) 39);
 		assertThat(info.getId()).isEqualTo(1089);
+		assertThat(info.isJuridical()).isTrue();
+		assertThat(info.isIndividual()).isFalse();
 	}
 
 	@Test
@@ -48,6 +49,8 @@ public class OgrnInfoTest {
 		assertThat(info.getSubject()).isEqualTo((byte) 50);
 		assertThat(info.getTax()).isEqualTo((byte) 0);
 		assertThat(info.getId()).isEqualTo(11600015);
+		assertThat(info.isJuridical()).isFalse();
+		assertThat(info.isIndividual()).isTrue();
 	}
 
 	@Test
@@ -144,5 +147,26 @@ public class OgrnInfoTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void testCreateOgrnip_id_max() throws Exception {
 		new OgrnInfo(1, 1, 1, 999999999 + 1);
+	}
+
+	@Test
+	public void testEquals() throws Exception {
+		OgrnInfo info = new OgrnInfo(1, 2, 3, 4, 5);
+		assertThat(info).isEqualTo(info);
+		assertThat(info).isNotEqualTo(new OgrnInfo(9, 2, 3, 4, 5));
+		assertThat(info).isNotEqualTo(new OgrnInfo(1, 20, 3, 4, 5));
+		assertThat(info).isNotEqualTo(new OgrnInfo(1, 2, 30, 4, 5));
+		assertThat(info).isNotEqualTo(new OgrnInfo(1, 2, 3, 40, 5));
+		assertThat(info).isNotEqualTo(new OgrnInfo(1, 2, 3, 4, 50));
+		assertThat(info).isNotEqualTo(info.format());
+		assertThat(info.format()).isEqualTo(info.format());
+		assertThat(info).isEqualTo(new OgrnInfo(1, 2, 3, 4, 5));
+		assertThat(new OgrnInfo(1, 2, 3, 0, 5)).isNotEqualTo(new OgrnInfo(1, 2, 3, 5));
+	}
+
+	@Test
+	@SuppressWarnings("RedundantCast")
+	public void testHashCode() throws Exception {
+		assertThat(new OgrnInfo((int) 1, 1, 1, 0, 1).hashCode()).isNotEqualTo(new OgrnInfo((int) 1, 1, 1, 1).hashCode());
 	}
 }
