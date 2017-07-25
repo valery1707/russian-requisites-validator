@@ -15,7 +15,7 @@ public class InnInfo {
 	/**
 	 * Номер местной налоговой инспекции
 	 */
-	private final byte localTax;
+	private final byte tax;
 
 	/**
 	 * Номер налоговой записи налогоплательщика
@@ -23,21 +23,37 @@ public class InnInfo {
 	private final int id;
 
 	/**
-	 * Юридическое Лицо
+	 * Юридическое Лицо/Физическое лицо
 	 */
 	private final boolean juridical;
 
 	private String crc;
 
-	public InnInfo(int subject, int localTax, int id, boolean juridical) {
-		this((byte) subject, (byte) localTax, id, juridical);
-	}
-
-	public InnInfo(byte subject, byte localTax, int id, boolean juridical) {
+	/**
+	 * ИНН
+	 *
+	 * @param subject   Код субъекта Российской Федерации
+	 * @param tax       Номер местной налоговой инспекции
+	 * @param id        Номер налоговой записи налогоплательщика
+	 * @param juridical Юридическое Лицо/Физическое лицо
+	 */
+	public InnInfo(byte subject, byte tax, int id, boolean juridical) {
 		this.subject = checkRange(subject, 0, 99, "Subject");
-		this.localTax = checkRange(localTax, 0, 99, "Local tax");
+		this.tax = checkRange(tax, 0, 99, "Local tax");
 		this.id = checkRange(id, 0, juridical ? 99999 : 999999, "ID");
 		this.juridical = juridical;
+	}
+
+	/**
+	 * ИНН
+	 *
+	 * @param subject   Код субъекта Российской Федерации
+	 * @param tax       Номер местной налоговой инспекции
+	 * @param id        Номер налоговой записи налогоплательщика
+	 * @param juridical Юридическое Лицо/Физическое лицо
+	 */
+	public InnInfo(int subject, int tax, int id, boolean juridical) {
+		this((byte) subject, (byte) tax, id, juridical);
 	}
 
 	@Nonnull
@@ -58,7 +74,7 @@ public class InnInfo {
 				isJuridical()
 						? "%02d%02d%05d"
 						: "%02d%02d%06d"
-				, getSubject(), getLocalTax(), getId());
+				, getSubject(), getTax(), getId());
 		if (crc == null) {
 			crc = String.valueOf(InnValidator.calcCrc(s));
 			if (isPhysical()) {
@@ -68,22 +84,37 @@ public class InnInfo {
 		return s + crc;
 	}
 
+	/**
+	 * @return Код субъекта Российской Федерации
+	 */
 	public byte getSubject() {
 		return subject;
 	}
 
-	public byte getLocalTax() {
-		return localTax;
+	/**
+	 * @return Номер местной налоговой инспекции
+	 */
+	public byte getTax() {
+		return tax;
 	}
 
+	/**
+	 * @return Номер налоговой записи налогоплательщика
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @return Юридическое Лицо
+	 */
 	public boolean isJuridical() {
 		return juridical;
 	}
 
+	/**
+	 * @return Физическое лицо
+	 */
 	public boolean isPhysical() {
 		return !isJuridical();
 	}
@@ -100,7 +131,7 @@ public class InnInfo {
 		InnInfo that = (InnInfo) other;
 		return
 				this.getSubject() == that.getSubject() &&
-				this.getLocalTax() == that.getLocalTax() &&
+				this.getTax() == that.getTax() &&
 				this.getId() == that.getId() &&
 				this.isJuridical() == that.isJuridical()
 				;
@@ -109,7 +140,7 @@ public class InnInfo {
 	@Override
 	public int hashCode() {
 		int result = (int) getSubject();
-		result = 31 * result + (int) getLocalTax();
+		result = 31 * result + (int) getTax();
 		result = 31 * result + getId();
 		result = 31 * result + (isJuridical() ? 1 : 0);
 		return result;

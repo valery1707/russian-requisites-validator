@@ -11,7 +11,7 @@ import static name.valery1707.validator.russian.ogrn.OgrnValidator.ValidationRes
 
 /**
  * ОГРН - Основной Государственный Регистрационный Номер
- * <p/>
+ * <p>
  * ОГРНИП - Основной Государственный Регистрационный Номер для Индивидуального Предпринимателя
  */
 @SuppressWarnings({"WeakerAccess", "unused"})

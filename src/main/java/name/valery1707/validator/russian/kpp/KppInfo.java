@@ -26,6 +26,13 @@ public class KppInfo {
 	 */
 	private final int id;
 
+	/**
+	 * КПП
+	 *
+	 * @param tax     Код налогового органа
+	 * @param purpose Причина постановки на учет (учёта сведений)
+	 * @param id      Порядковый номер
+	 */
 	public KppInfo(int tax, String purpose, int id) {
 		this.tax = checkRange(tax, 0, 9999, "Tax");
 		this.purpose = checkPattern(purpose, PURPOSE, "Purpose");
@@ -48,14 +55,23 @@ public class KppInfo {
 		return String.format("%04d%s%03d", getTax(), getPurpose(), getId());
 	}
 
+	/**
+	 * @return Код налогового органа
+	 */
 	public int getTax() {
 		return tax;
 	}
 
+	/**
+	 * @return Причина постановки на учет (учёта сведений)
+	 */
 	public String getPurpose() {
 		return purpose;
 	}
 
+	/**
+	 * @return Порядковый номер
+	 */
 	public int getId() {
 		return id;
 	}

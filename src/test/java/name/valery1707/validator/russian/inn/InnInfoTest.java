@@ -27,7 +27,7 @@ public class InnInfoTest {
 		InnInfo info = parse("1181111110");
 		assertThat(info).isNotNull();
 		assertThat(info.getSubject()).isEqualTo((byte) 11);
-		assertThat(info.getLocalTax()).isEqualTo((byte) 81);
+		assertThat(info.getTax()).isEqualTo((byte) 81);
 		assertThat(info.getId()).isEqualTo(11111);
 	}
 
@@ -36,7 +36,7 @@ public class InnInfoTest {
 		InnInfo info = parse("325507450247");
 		assertThat(info).isNotNull();
 		assertThat(info.getSubject()).isEqualTo((byte) 32);
-		assertThat(info.getLocalTax()).isEqualTo((byte) 55);
+		assertThat(info.getTax()).isEqualTo((byte) 55);
 		assertThat(info.getId()).isEqualTo(74502);
 		assertThat(info.format()).isEqualTo(info.format());
 	}

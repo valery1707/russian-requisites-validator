@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+* Update Javadoc
+
 # 0.0.4
 
 * Forbid create instances of utilities classes
