@@ -4,6 +4,10 @@ package name.valery1707.validator;
  * Some useful method extracted from Apache Commons Lang3
  */
 public final class StringUtils {
+	StringUtils() {
+		throw new IllegalStateException("Instance must not be created");
+	}
+
 	/**
 	 * <p>Checks if a CharSequence is empty ("") or null.</p>
 	 * <p>

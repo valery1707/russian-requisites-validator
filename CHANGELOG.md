@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+* Forbid create instances of utilities classes
+
 # 0.0.3
 
 * Implement [OGRN](https://ru.wikipedia.org/w/index.php?title=%D0%9E%D0%93%D0%A0%D0%9D)/[OGRNIP](https://ru.wikipedia.org/w/index.php?title=%D0%9E%D0%93%D0%A0%D0%9D%D0%98%D0%9F) processing

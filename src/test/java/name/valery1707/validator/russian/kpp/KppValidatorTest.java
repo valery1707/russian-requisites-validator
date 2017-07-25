@@ -7,6 +7,11 @@ import static name.valery1707.validator.russian.kpp.KppValidator.isValid;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class KppValidatorTest {
+	@Test(expected = IllegalStateException.class)
+	public void create() throws Exception {
+		new KppValidator();
+	}
+
 	@Test
 	public void testIsValid() throws Exception {
 		assertThat(isValid(null)).isEqualByComparingTo(NULL);

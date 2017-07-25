@@ -7,6 +7,11 @@ import static name.valery1707.validator.russian.ogrn.OgrnValidator.isValid;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OgrnValidatorTest {
+	@Test(expected = IllegalStateException.class)
+	public void create() throws Exception {
+		new OgrnValidator();
+	}
+
 	@Test
 	public void testIsValid() throws Exception {
 		assertThat(isValid(null)).isEqualByComparingTo(NULL);
