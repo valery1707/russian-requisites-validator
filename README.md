@@ -3,5 +3,7 @@
 
 [![Travis CI](https://travis-ci.org/valery1707/russian-requisites-validator.svg?branch=master)](https://travis-ci.org/valery1707/russian-requisites-validator)
 
+[![Stories in Ready](https://badge.waffle.io/valery1707/russian-requisites-validator.svg?label=ready&title=Ready to work)](http://waffle.io/valery1707/russian-requisites-validator) 
+
 # russian-requisites-validator
 Javax validation implementation for Russian requisites: ИНН, КПП, ОГРН
