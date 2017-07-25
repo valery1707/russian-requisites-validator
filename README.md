@@ -19,3 +19,10 @@ Build with code coverage information:
 mvn clean test jacoco:report
 ```
 See: `target/site/jacoco/index.html`
+
+### [PITest](http://pitest.org/) mutation testing
+
+```bash
+mvn clean test org.pitest:pitest-maven:mutationCoverage
+```
+See: `target/pit-reports/*/index.html`

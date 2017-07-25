@@ -48,12 +48,22 @@ public class InnInfoTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testCreate_max_id_juridical() throws Exception {
+	public void testCreate_id_min_juridical() throws Exception {
+		new InnInfo(1, 1, -1, true);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_id_min_physical() throws Exception {
+		new InnInfo(1, 1, -1, false);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_id_max_juridical() throws Exception {
 		new InnInfo(1, 1, 99999 + 1, true);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void testCreate_max_id_physical() throws Exception {
+	public void testCreate_id_max_physical() throws Exception {
 		new InnInfo(1, 1, 999999 + 1, false);
 	}
 
