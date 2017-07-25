@@ -1,5 +1,6 @@
 package name.valery1707.validator.russian.inn;
 
+import name.valery1707.validator.russian.inn.InnValidator.ValidationResult;
 import org.junit.Test;
 
 import static name.valery1707.validator.russian.inn.InnValidator.ValidationResult.*;
@@ -10,6 +11,13 @@ public class InnValidatorTest {
 	@Test(expected = IllegalStateException.class)
 	public void create() throws Exception {
 		new InnValidator();
+	}
+
+	@Test
+	public void validationResultEnum() throws Exception {
+		for (ValidationResult result : ValidationResult.values()) {
+			assertThat(ValidationResult.valueOf(result.name())).isEqualByComparingTo(result);
+		}
 	}
 
 	@Test

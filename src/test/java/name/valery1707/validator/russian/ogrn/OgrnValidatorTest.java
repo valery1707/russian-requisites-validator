@@ -1,5 +1,6 @@
 package name.valery1707.validator.russian.ogrn;
 
+import name.valery1707.validator.russian.ogrn.OgrnValidator.ValidationResult;
 import org.junit.Test;
 
 import static name.valery1707.validator.russian.ogrn.OgrnValidator.ValidationResult.*;
@@ -10,6 +11,13 @@ public class OgrnValidatorTest {
 	@Test(expected = IllegalStateException.class)
 	public void create() throws Exception {
 		new OgrnValidator();
+	}
+
+	@Test
+	public void validationResultEnum() throws Exception {
+		for (ValidationResult result : ValidationResult.values()) {
+			assertThat(ValidationResult.valueOf(result.name())).isEqualByComparingTo(result);
+		}
 	}
 
 	@Test
