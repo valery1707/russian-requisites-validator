@@ -1,5 +1,6 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/name.valery1707.validator/russian-requisites-validator/badge.svg)](https://maven-badges.herokuapp.com/maven-central/name.valery1707.validator/russian-requisites-validator)
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/name.valery1707.validator/russian-requisites-validator/badge.svg)](http://www.javadoc.io/doc/name.valery1707.validator/russian-requisites-validator)
+[![License](https://img.shields.io/github/license/valery1707/russian-requisites-validator.svg)](http://opensource.org/licenses/MIT)
 
 [![Travis CI](https://travis-ci.org/valery1707/russian-requisites-validator.svg?branch=master)](https://travis-ci.org/valery1707/russian-requisites-validator)
 
