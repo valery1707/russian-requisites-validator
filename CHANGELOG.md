@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+# 0.0.4
+
 * Forbid create instances of utilities classes
 * Constraint validations tests
 * KPP: Check value ranges
