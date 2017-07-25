@@ -38,6 +38,7 @@ public class InnInfoTest {
 		assertThat(info.getSubject()).isEqualTo((byte) 32);
 		assertThat(info.getLocalTax()).isEqualTo((byte) 55);
 		assertThat(info.getId()).isEqualTo(74502);
+		assertThat(info.format()).isEqualTo(info.format());
 	}
 
 	@Test
@@ -62,5 +63,14 @@ public class InnInfoTest {
 		assertThat(new InnInfo(1, 1, 1, true)).isNotEqualTo(new InnInfo(1, 2, 1, true));
 		assertThat(new InnInfo(1, 1, 1, true)).isNotEqualTo(new InnInfo(1, 1, 2, true));
 		assertThat(new InnInfo(1, 1, 1, true)).isNotEqualTo(new InnInfo(1, 1, 1, false));
+		InnInfo info = new InnInfo(5, 5, 5, false);
+		assertThat(info).isNotEqualTo(info.format());
+		assertThat(info).isEqualTo(info);
+		assertThat(info).isEqualTo(new InnInfo(5, 5, 5, false));
+	}
+
+	@Test
+	public void testHashCode() throws Exception {
+		assertThat(new InnInfo(1, 1, 1, true).hashCode()).isNotEqualTo(new InnInfo(1, 1, 1, false).hashCode());
 	}
 }

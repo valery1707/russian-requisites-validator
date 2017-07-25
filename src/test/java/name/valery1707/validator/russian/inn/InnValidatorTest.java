@@ -31,6 +31,8 @@ public class InnValidatorTest {
 		assertThat(isValid("1171111110")).isEqualByComparingTo(CRC);
 		assertThat(isValid("7713456564")).isEqualByComparingTo(CRC);
 		assertThat(isValid("325507450247")).isEqualByComparingTo(OK);
+		assertThat(isValid("325507450257")).isEqualByComparingTo(CRC);
+		assertThat(isValid("325507450248")).isEqualByComparingTo(CRC);
 		assertThat(isValid("925507450247")).isEqualByComparingTo(CRC);
 	}
 }

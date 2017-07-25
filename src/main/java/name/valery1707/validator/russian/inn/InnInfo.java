@@ -89,15 +89,15 @@ public class InnInfo {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
+	public boolean equals(Object other) {
+		if (this == other) {
 			return true;
 		}
-		if (!(o instanceof InnInfo)) {
+		if (!(other instanceof InnInfo)) {
 			return false;
 		}
 
-		InnInfo that = (InnInfo) o;
+		InnInfo that = (InnInfo) other;
 		return
 				this.getSubject() == that.getSubject() &&
 				this.getLocalTax() == that.getLocalTax() &&
