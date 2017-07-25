@@ -3,6 +3,8 @@
 
 [![Travis CI](https://travis-ci.org/valery1707/russian-requisites-validator.svg?branch=master)](https://travis-ci.org/valery1707/russian-requisites-validator)
 
+[![CoverAlls.io](https://coveralls.io/repos/valery1707/russian-requisites-validator/badge.svg?branch=master)](https://coveralls.io/r/valery1707/russian-requisites-validator)
+
 [![Stories in Ready](https://badge.waffle.io/valery1707/russian-requisites-validator.svg?label=ready&title=Ready%20to%20work)](http://waffle.io/valery1707/russian-requisites-validator)
 
 # russian-requisites-validator
