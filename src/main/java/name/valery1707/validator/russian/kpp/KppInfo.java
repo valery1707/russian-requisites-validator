@@ -2,6 +2,10 @@ package name.valery1707.validator.russian.kpp;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.regex.Pattern;
+
+import static name.valery1707.validator.Checker.checkPattern;
+import static name.valery1707.validator.Checker.checkRange;
 
 @SuppressWarnings("WeakerAccess")
 public class KppInfo {
@@ -15,15 +19,17 @@ public class KppInfo {
 	 */
 	private final String purpose;
 
+	private final static Pattern PURPOSE = Pattern.compile("^[\\dA-Z]{2}$");
+
 	/**
 	 * Порядковый номер
 	 */
 	private final int id;
 
 	public KppInfo(int tax, String purpose, int id) {
-		this.tax = tax;
-		this.purpose = purpose;
-		this.id = id;
+		this.tax = checkRange(tax, 0, 9999, "Tax");
+		this.purpose = checkPattern(purpose, PURPOSE, "Purpose");
+		this.id = checkRange(id, 1, 999, "ID");
 	}
 
 	@Nonnull

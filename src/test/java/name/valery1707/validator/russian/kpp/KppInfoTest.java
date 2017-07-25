@@ -28,4 +28,39 @@ public class KppInfoTest {
 		assertThat(parse("773399001").format()).isEqualTo("773399001");
 		assertThat(parse("7733AZ001").format()).isEqualTo("7733AZ001");
 	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_tax_min() throws Exception {
+		new KppInfo(-1, "00", 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_tax_max() throws Exception {
+		new KppInfo(10000, "00", 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_purpose_pattern1() throws Exception {
+		new KppInfo(1, "", 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_purpose_pattern2() throws Exception {
+		new KppInfo(1, "--", 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_purpose_pattern3() throws Exception {
+		new KppInfo(1, " 11 ", 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_id_min() throws Exception {
+		new KppInfo(1, "00", 0);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_id_max() throws Exception {
+		new KppInfo(1, "00", 1000);
+	}
 }
