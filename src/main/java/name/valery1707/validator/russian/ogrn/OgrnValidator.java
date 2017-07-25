@@ -15,7 +15,7 @@ import static name.valery1707.validator.russian.ogrn.OgrnValidator.ValidationRes
  * ОГРНИП - Основной Государственный Регистрационный Номер для Индивидуального Предпринимателя
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class OgrnValidator {
+public final class OgrnValidator {
 	OgrnValidator() {
 		throw new IllegalStateException("Instance must not be created");
 	}

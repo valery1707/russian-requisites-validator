@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import static name.valery1707.validator.russian.kpp.KppValidator.ValidationResult.*;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class KppValidator {
+public final class KppValidator {
 	KppValidator() {
 		throw new IllegalStateException("Instance must not be created");
 	}
