@@ -1,15 +1,17 @@
 package name.valery1707.validator.russian.ogrn;
 
+import name.valery1707.validator.russian.ogrn.Ogrn.CheckMode;
+
 import javax.annotation.Nonnull;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class OgrnConstraintValidator implements ConstraintValidator<Ogrn, CharSequence> {
-	private Ogrn.CheckMode mode;
+	private CheckMode mode;
 
 	@Override
-	public void initialize(Ogrn constraintAnnotation) {
-		mode = constraintAnnotation.mode();
+	public void initialize(Ogrn annotation) {
+		mode = annotation.mode();
 	}
 
 	@Override
@@ -17,10 +19,11 @@ public class OgrnConstraintValidator implements ConstraintValidator<Ogrn, CharSe
 		return value == null || value.length() == 0 || (OgrnValidator.isValid(value).isValid() && isValidType(value, mode));
 	}
 
-	private boolean isValidType(@Nonnull CharSequence value, @Nonnull Ogrn.CheckMode mode) {
-		if (mode.equals(Ogrn.CheckMode.JURIDICAL)) {
+	@SuppressWarnings("SimplifiableIfStatement")
+	private boolean isValidType(@Nonnull CharSequence value, @Nonnull CheckMode mode) {
+		if (mode.equals(CheckMode.JURIDICAL)) {
 			return value.length() == OgrnValidator.LEN_JURIDICAL;
-		} else if (mode.equals(Ogrn.CheckMode.INDIVIDUAL)) {
+		} else if (mode.equals(CheckMode.INDIVIDUAL)) {
 			return value.length() == OgrnValidator.LEN_INDIVIDUAL;
 		} else {
 			return true;

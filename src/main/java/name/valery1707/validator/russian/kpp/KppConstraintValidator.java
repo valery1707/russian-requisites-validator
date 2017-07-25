@@ -5,7 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 public class KppConstraintValidator implements ConstraintValidator<Kpp, CharSequence> {
 	@Override
-	public void initialize(Kpp constraintAnnotation) {
+	public void initialize(Kpp annotation) {
 	}
 
 	@Override

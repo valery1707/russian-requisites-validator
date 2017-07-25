@@ -3,6 +3,7 @@ Change log for releases.
 # SNAPSHOT
 
 * Forbid create instances of utilities classes
+* Constraint validations tests
 
 # 0.0.3
 
