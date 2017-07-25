@@ -7,3 +7,11 @@
 
 # russian-requisites-validator
 Javax validation implementation for Russian requisites: ИНН, КПП, ОГРН
+
+# Build
+
+Build with code coverage information:
+```bash
+mvn clean test jacoco:report
+```
+See: `target/site/jacoco/index.html`
