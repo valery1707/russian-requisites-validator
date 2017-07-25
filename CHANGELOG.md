@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+# 0.0.5
+
 * Update Javadoc
 
 # 0.0.4
