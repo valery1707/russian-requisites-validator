@@ -1,21 +1,18 @@
 package name.valery1707.validator.russian.kpp;
 
-import io.leangen.geantyref.AnnotationFormatException;
-import io.leangen.geantyref.TypeFactory;
+import com.googlecode.miyamoto.AnnotationProxyBuilder;
 import org.assertj.core.api.AbstractBooleanAssert;
 import org.junit.Test;
 
 import javax.validation.ConstraintValidatorContext;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class KppConstraintValidatorTest {
-	private static KppConstraintValidator validator() throws AnnotationFormatException {
+	private static KppConstraintValidator validator() {
 		KppConstraintValidator validator = new KppConstraintValidator();
-		Map<String, Object> annotationParameters = new HashMap<String, Object>();
-		validator.initialize(TypeFactory.annotation(Kpp.class, annotationParameters));
+		AnnotationProxyBuilder<Kpp> builder = AnnotationProxyBuilder.newBuilder(Kpp.class);
+		validator.initialize(builder.getProxedAnnotation());
 		return validator;
 	}
 
@@ -23,7 +20,7 @@ public class KppConstraintValidatorTest {
 		return null;
 	}
 
-	private AbstractBooleanAssert<?> assertValue(CharSequence value) throws AnnotationFormatException {
+	private AbstractBooleanAssert<?> assertValue(CharSequence value) {
 		return assertThat(validator().isValid(value, context()))
 				.describedAs("%s"
 						, value == null ? "null" : value.toString()

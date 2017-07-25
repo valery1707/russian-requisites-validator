@@ -1,14 +1,11 @@
 package name.valery1707.validator.russian.ogrn;
 
-import io.leangen.geantyref.AnnotationFormatException;
-import io.leangen.geantyref.TypeFactory;
+import com.googlecode.miyamoto.AnnotationProxyBuilder;
 import name.valery1707.validator.russian.ogrn.Ogrn.CheckMode;
 import org.assertj.core.api.AbstractBooleanAssert;
 import org.junit.Test;
 
 import javax.validation.ConstraintValidatorContext;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -20,15 +17,15 @@ public class OgrnConstraintValidatorTest {
 		}
 	}
 
-	private static OgrnConstraintValidator validator(CheckMode mode) throws AnnotationFormatException {
+	private static OgrnConstraintValidator validator(CheckMode mode) {
 		OgrnConstraintValidator validator = new OgrnConstraintValidator();
-		Map<String, Object> annotationParameters = new HashMap<String, Object>();
-		annotationParameters.put("mode", mode);
-		validator.initialize(TypeFactory.annotation(Ogrn.class, annotationParameters));
+		AnnotationProxyBuilder<Ogrn> builder = AnnotationProxyBuilder.newBuilder(Ogrn.class);
+		builder.setProperty("mode", mode);
+		validator.initialize(builder.getProxedAnnotation());
 		return validator;
 	}
 
-	private static OgrnConstraintValidator validator() throws AnnotationFormatException {
+	private static OgrnConstraintValidator validator() {
 		return validator(CheckMode.ANY);
 	}
 
@@ -36,7 +33,7 @@ public class OgrnConstraintValidatorTest {
 		return null;
 	}
 
-	private AbstractBooleanAssert<?> assertValue(CheckMode mode, CharSequence value) throws AnnotationFormatException {
+	private AbstractBooleanAssert<?> assertValue(CheckMode mode, CharSequence value) {
 		return assertThat(validator(mode).isValid(value, context()))
 				.describedAs("%s(%s)"
 						, mode.toString()
@@ -44,7 +41,7 @@ public class OgrnConstraintValidatorTest {
 				);
 	}
 
-	private AbstractBooleanAssert<?> assertValue(CharSequence value) throws AnnotationFormatException {
+	private AbstractBooleanAssert<?> assertValue(CharSequence value) {
 		return assertValue(CheckMode.ANY, value);
 	}
 
