@@ -17,6 +17,7 @@ public class KppInfo {
 	/**
 	 * Причина постановки на учет (учёта сведений)
 	 */
+	@Nonnull
 	private final String purpose;
 
 	private final static Pattern PURPOSE = Pattern.compile("^[\\dA-Z]{2}$");
@@ -65,6 +66,7 @@ public class KppInfo {
 	/**
 	 * @return Причина постановки на учет (учёта сведений)
 	 */
+	@Nonnull
 	public String getPurpose() {
 		return purpose;
 	}
@@ -74,5 +76,30 @@ public class KppInfo {
 	 */
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (!(other instanceof KppInfo)) {
+			return false;
+		}
+
+		KppInfo that = (KppInfo) other;
+		return
+				this.getTax() == that.getTax() &&
+				this.getId() == that.getId() &&
+				this.getPurpose().equals(that.getPurpose())
+				;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = getTax();
+		result = 31 * result + getPurpose().hashCode();
+		result = 31 * result + getId();
+		return result;
 	}
 }
