@@ -40,6 +40,11 @@ public class KppInfoTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
+	public void testCreate_purpose_null() throws Exception {
+		new KppInfo(1, null, 1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
 	public void testCreate_purpose_pattern1() throws Exception {
 		new KppInfo(1, "", 1);
 	}
