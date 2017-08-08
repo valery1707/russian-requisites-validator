@@ -1,5 +1,6 @@
 package name.valery1707.validator.russian.inn;
 
+import javax.annotation.Nullable;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Retention;
@@ -36,14 +37,31 @@ public @interface Inn {
 		/**
 		 * Support any variant
 		 */
-		ANY,
+		ANY {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null;
+			}
+		},
 		/**
 		 * Support only juridical values
 		 */
-		JURIDICAL,
+		JURIDICAL {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null && value.length() == InnValidator.LEN_JURIDICAL;
+			}
+		},
 		/**
 		 * Support only physical values
 		 */
-		PHYSICAL;
+		PHYSICAL {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null && value.length() == InnValidator.LEN_PHYSICAL;
+			}
+		};
+
+		public abstract boolean isValid(@Nullable CharSequence value);
 	}
 }

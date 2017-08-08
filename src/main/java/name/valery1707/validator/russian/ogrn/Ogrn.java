@@ -1,5 +1,6 @@
 package name.valery1707.validator.russian.ogrn;
 
+import javax.annotation.Nullable;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.Retention;
@@ -36,14 +37,31 @@ public @interface Ogrn {
 		/**
 		 * Support any variant
 		 */
-		ANY,
+		ANY {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null;
+			}
+		},
 		/**
 		 * Support only juridical values
 		 */
-		JURIDICAL,
+		JURIDICAL {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null && value.length() == OgrnValidator.LEN_JURIDICAL;
+			}
+		},
 		/**
 		 * Support only individual values
 		 */
-		INDIVIDUAL;
+		INDIVIDUAL {
+			@Override
+			public boolean isValid(@Nullable CharSequence value) {
+				return value != null && value.length() == OgrnValidator.LEN_INDIVIDUAL;
+			}
+		};
+
+		public abstract boolean isValid(@Nullable CharSequence value);
 	}
 }

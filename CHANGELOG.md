@@ -2,6 +2,9 @@ Change log for releases.
 
 # SNAPSHOT
 
+* Force null-checks in constraint validators
+* Simplify constraint validators
+
 # 0.0.6
 
 * Fix NPE in `KppInfo` constructor

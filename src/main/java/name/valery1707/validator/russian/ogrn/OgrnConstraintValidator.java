@@ -2,7 +2,7 @@ package name.valery1707.validator.russian.ogrn;
 
 import name.valery1707.validator.russian.ogrn.Ogrn.CheckMode;
 
-import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -16,17 +16,14 @@ public class OgrnConstraintValidator implements ConstraintValidator<Ogrn, CharSe
 
 	@Override
 	public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
-		return value == null || value.length() == 0 || (OgrnValidator.isValid(value).isValid() && isValidType(value, mode));
+		return isEmptyValue(value) || isValidValue(value);
 	}
 
-	@SuppressWarnings("SimplifiableIfStatement")
-	private boolean isValidType(@Nonnull CharSequence value, @Nonnull CheckMode mode) {
-		if (mode.equals(CheckMode.JURIDICAL)) {
-			return value.length() == OgrnValidator.LEN_JURIDICAL;
-		} else if (mode.equals(CheckMode.INDIVIDUAL)) {
-			return value.length() == OgrnValidator.LEN_INDIVIDUAL;
-		} else {
-			return true;
-		}
+	private boolean isEmptyValue(@Nullable CharSequence value) {
+		return value == null || value.length() == 0;
+	}
+
+	private boolean isValidValue(CharSequence value) {
+		return OgrnValidator.isValid(value).isValid() && mode.isValid(value);
 	}
 }
