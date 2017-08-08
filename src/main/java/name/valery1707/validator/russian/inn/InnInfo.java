@@ -27,7 +27,7 @@ public class InnInfo {
 	 */
 	private final boolean juridical;
 
-	private String crc;
+	private transient String crc;
 
 	/**
 	 * ИНН

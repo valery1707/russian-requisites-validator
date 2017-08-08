@@ -11,6 +11,8 @@ import com.tngtech.archunit.lang.ArchRule;
 import com.tngtech.archunit.lang.ConditionEvents;
 import com.tngtech.archunit.lang.SimpleConditionEvent;
 import com.tngtech.archunit.library.GeneralCodingRules;
+import nl.jqno.equalsverifier.EqualsVerifier;
+import nl.jqno.equalsverifier.Warning;
 import org.junit.runner.RunWith;
 
 import javax.validation.Constraint;
@@ -63,5 +65,29 @@ public class ArchitectureTest {
 
 	private static ArchCondition<JavaClass> retentionRuntime() {
 		return retention(RetentionPolicy.RUNTIME);
+	}
+
+	@ArchTest
+	public static final ArchRule INFO_MUST_IMPLEMENT_EQUALS_AND_HASHCODE = classes()
+			.that().haveNameMatching("^.*Info")
+			.should(equalsContract())
+			.because("Info classes must correctly implement equals and hashCode methods");
+
+	private static ArchCondition<JavaClass> equalsContract() {
+		return new ArchCondition<JavaClass>("implement equals and hashCode methods") {
+			@Override
+			public void check(JavaClass item, ConditionEvents events) {
+				String msg = "class " + item.getName();
+				try {
+					EqualsVerifier
+							.forClass(item.reflect())
+							.suppress(Warning.STRICT_INHERITANCE)
+							.verify();
+					events.add(SimpleConditionEvent.satisfied(item, msg + " match satisfy contract"));
+				} catch (AssertionError e) {
+					events.add(SimpleConditionEvent.violated(item, msg + " fail equals contract: " + e.getMessage()));
+				}
+			}
+		};
 	}
 }

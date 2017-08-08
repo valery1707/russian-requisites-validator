@@ -44,7 +44,7 @@ public class OgrnInfo {
 	 */
 	private final boolean juridical;
 
-	private char crc = '-';
+	private transient char crc = '-';
 
 	/**
 	 * ОГРН/ОГРНИП
