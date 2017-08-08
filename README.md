@@ -8,6 +8,7 @@
 [![CoverAlls.io](https://coveralls.io/repos/valery1707/russian-requisites-validator/badge.svg?branch=master)](https://coveralls.io/r/valery1707/russian-requisites-validator)
 
 [![Stories in Ready](https://badge.waffle.io/valery1707/russian-requisites-validator.svg?label=ready&title=Ready%20to%20work)](http://waffle.io/valery1707/russian-requisites-validator)
+[![DevOps By Rultor.com](http://www.rultor.com/b/valery1707/russian-requisites-validator)](http://www.rultor.com/p/valery1707/russian-requisites-validator)
 
 # russian-requisites-validator
 Javax validation implementation for Russian requisites: ИНН, КПП, ОГРН
