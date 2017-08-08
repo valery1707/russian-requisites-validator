@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+# 0.0.7
+
 * Force null-checks in constraint validators
 * Simplify constraint validators
 
