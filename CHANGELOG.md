@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+* Fix NPE in `KppInfo` constructor
+
 # 0.0.5
 
 * Update Javadoc

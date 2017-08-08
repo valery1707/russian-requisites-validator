@@ -24,7 +24,7 @@ public final class Checker {
 	}
 
 	public static String checkPattern(String value, Pattern pattern, String name) {
-		if (!pattern.matcher(value).matches()) {
+		if (value == null || !pattern.matcher(value).matches()) {
 			throw new IllegalArgumentException(String.format("%s must match with pattern %s", name, pattern.toString()));
 		} else {
 			return value;
