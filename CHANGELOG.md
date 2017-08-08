@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+# 0.0.6
+
 * Fix NPE in `KppInfo` constructor
 
 # 0.0.5
