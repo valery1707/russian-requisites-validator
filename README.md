@@ -2,6 +2,7 @@
 [![Javadoc](https://javadoc-emblem.rhcloud.com/doc/name.valery1707.validator/russian-requisites-validator/badge.svg)](http://www.javadoc.io/doc/name.valery1707.validator/russian-requisites-validator)
 [![License](https://img.shields.io/github/license/valery1707/russian-requisites-validator.svg)](http://opensource.org/licenses/MIT)
 [![OpenHUB](https://www.openhub.net/p/russian-requisites-validator/widgets/project_thin_badge.gif)](https://www.openhub.net/p/russian-requisites-validator)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvalery1707%2Frussian-requisites-validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvalery1707%2Frussian-requisites-validator?ref=badge_shield)
 
 [![Travis CI](https://travis-ci.org/valery1707/russian-requisites-validator.svg?branch=master)](https://travis-ci.org/valery1707/russian-requisites-validator)
 
@@ -27,3 +28,7 @@ See: `target/site/jacoco/index.html`
 mvn clean test org.pitest:pitest-maven:mutationCoverage
 ```
 See: `target/pit-reports/*/index.html`
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fvalery1707%2Frussian-requisites-validator.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fvalery1707%2Frussian-requisites-validator?ref=badge_large)
