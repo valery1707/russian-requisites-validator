@@ -2,6 +2,8 @@ Change log for releases.
 
 # SNAPSHOT
 
+* Build with [error-prone](http://errorprone.info/index) compiler
+
 # 0.0.7
 
 * Force null-checks in constraint validators

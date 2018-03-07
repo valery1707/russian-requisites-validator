@@ -56,6 +56,8 @@
 		<github.description></github.description>
 
 		<lib.assertj.version>3.4.1</lib.assertj.version>
+		<lib.error-prone.compiler>2.8.3</lib.error-prone.compiler>
+		<lib.error-prone.core>2.2.0</lib.error-prone.core>
 	</properties>
 
 	<dependencies>
@@ -146,6 +148,32 @@
 						</excludedMethod>
 					</excludedMethods>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<compilerId>javac-with-errorprone</compilerId>
+					<forceJavacCompilerUse>true</forceJavacCompilerUse>
+					<!-- maven-compiler-plugin defaults to targeting Java 5, but our javac only supports >=6 -->
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac-errorprone</artifactId>
+						<version>${lib.error-prone.compiler}</version>
+					</dependency>
+					<!-- override plexus-compiler-javac-errorprone's dependency on Error Prone with the latest version -->
+					<dependency>
+						<groupId>com.google.errorprone</groupId>
+						<artifactId>error_prone_core</artifactId>
+						<version>${lib.error-prone.core}</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 
 			<plugin>
@@ -292,6 +320,8 @@
 			</activation>
 			<properties>
 				<lib.assertj.version>2.4.1</lib.assertj.version>
+				<lib.error-prone.compiler>2.6</lib.error-prone.compiler>
+				<lib.error-prone.core>2.0.5</lib.error-prone.core>
 			</properties>
 		</profile>
 
@@ -302,6 +332,8 @@
 			</activation>
 			<properties>
 				<lib.assertj.version>3.4.1</lib.assertj.version>
+				<lib.error-prone.compiler>2.8.3</lib.error-prone.compiler>
+				<lib.error-prone.core>2.2.0</lib.error-prone.core>
 			</properties>
 		</profile>
 	</profiles>
